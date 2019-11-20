@@ -1,33 +1,96 @@
-.chats-body {
-  padding: 0;
-}
-
-.chats-body .chat-header,
-.chats-body .status-bar {
-  padding: 0px 20px;
-}
-
-.chat-screen {
-  background-image: url("../images/chat-background.png");
-  min-height: 100vh;
-}
-
-.chat__write {
+.header-wrapper {
+  z-index: 2;
+  background-color: white;
   position: fixed;
-  bottom: 50px;
-  width: 80%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.chats-body .header,
+.chats-body .status-bar {
+  margin-bottom: 30px;
+}
+
+.chats-body {
+  background-image: url("../images/chat-background.png");
+  min-height: 200vh;
+  padding-top: 120px;
+  overflow: visible;
+}
+
+.chat__write-container {
+  position: fixed;
+
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fcfcfc;
-  padding: 0px 20px;
-  border-radius: 40px;
+
   /* 완전히 가운데 정렬하는 방법 */
   margin: 0 auto;
   left: 0;
   right: 0;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 16px -8px,
-    rgba(0, 0, 0, 0.024) 0px -6px 16px -6px;
+  bottom: 0;
+}
+
+.chat__write-left {
+  position: absolute;
+  left: 10px;
+}
+
+.chat__write-right {
+  position: absolute;
+  right: 10px;
+}
+
+@keyframes float {
+  0% {
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+  50% {
+    box-shadow: 0 30px 60px -60px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+  100% {
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+}
+
+.chat__write {
+  bottom: 0px;
+  width: 100%;
+  border-radius: 0;
+  padding: 20px 60px;
+  width: 100%;
+  border: none;
+  font-size: 14px;
+  transition: transform 0.5s ease-in, border-radius 0.5s ease-in;
+}
+
+.chat__write:focus {
+  outline: none;
+  transform: scaleX(0.8) translateY(-100px);
+  border-radius: 30px;
+  margin: 0 auto;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  animation: float 3s linear infinite forwards;
+}
+
+.chat__icon {
+  font-size: 20px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.chat__write:focus ~ .chat__icon {
+  opacity: 0;
 }
 
 .chat__write i {
@@ -43,10 +106,6 @@
   width: 100%;
   border: none;
   font-size: 14px;
-}
-
-.chat__write-column input:focus {
-  outline: none;
 }
 
 .chat-screen .chat__messages {
@@ -79,49 +138,81 @@
 
 .incoming-message {
   align-self: flex-start;
+  animation: incomingAnim 0.5s ease-in forwards;
 }
 
 .sent-message {
   align-self: flex-end;
+  animation: sentAnim 0.5s ease-in forwards;
 }
+
+@keyframes spin {
+  from{
+    transform: none;
+  }to{
+    transform: rotateY(1turn);
+  }
+}
+
 
 .incoming-message img {
   width: 40px;
   border-radius: 15px;
   margin-right: 15px;
+  animation: spin 1s linear infinite;
 }
 
 .message .message__bubble {
   background-color: white;
-  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
-    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 16px -8px,
+    rgba(0, 0, 0, 0.024) 0px -6px 16px -6px;
   padding: 10px 20px;
-  border-radius: 20px;  
-  display:block;
+  border-radius: 20px;
+  display: block;
   max-width: 80vw;
 }
 
 .incoming-message .message__author {
-    margin-bottom: 10px;
-    display: block;
-    font-weight:600;
-    font-size:13px;
+  margin-bottom: 10px;
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .incoming-message .message__bubble {
-    border-bottom-left-radius: 0;
-    background-image: linear-gradient(to right, #bdc3c7, #2c3e50);
-    color:white;
+  border-bottom-left-radius: 0;
+  background-image: linear-gradient(to right, #bdc3c7, #2c3e50);
+  color: white;
 }
 
 .sent-message .message__bubble {
-    border-bottom-right-radius: 0;
-    background-image: linear-gradient(to right, #06beb6, #48b1bf);
-    color:white;
-    
+  border-bottom-right-radius: 0;
+  background-image: linear-gradient(to right, #06beb6, #48b1bf);
+  color: white;
 }
 
 .message__content {
-    margin-bottom: 20px;
-    
+  margin-bottom: 20px;
+}
+
+@keyframes incomingAnim {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sentAnim {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
