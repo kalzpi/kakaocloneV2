@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <title>Chats | Kakao Clone</title>
   </head>
-  <body>
+  <body class="chats-body">
     <div class="status-bar">
       <div class="status-bar__column">
         <span class="status-bar__clock">13:50</span>
@@ -40,7 +40,7 @@
         </span>
       </div>
     </header>
-    <main class="chat">
+    <main class="chat-screen">
       <ul class="chat__messages">
         <span class="chat__timestamp">Friday, January 11, 2019</span>
         <li class="incoming-message message">
@@ -51,18 +51,40 @@
           />
           <div class="message__content">
             <span class="message__author">Best Friend</span>
-            <div class="message__bubble">
-              Congrats I love you!
-            </div>
+            <span class="message__bubble">
+              Hey, I found some problem here.
+            </span>
           </div>
-          <span class="message__timestamp"></span>
+          
         </li>
-        <li class="incoming-message message">
+        <li class="sent-message message">
           <span class="message__timestamp"></span>
           <div class="message__content">
-            <div class="message__bubble">
-              Thanks a lot dude!
-            </div>
+            <span class="message__bubble">
+              What is that?
+            </span>
+          </div>
+        </li>
+        <li class="incoming-message message">
+          <img
+            src="images/my_selfie.png"
+            alt=""
+            class="g-avatar message__avatar"
+          />
+          <div class="message__content">
+            <span class="message__author">Best Friend</span>
+            <span class="message__bubble">
+              If/there/is/no/space/in/sentence,this/bubble/doesn't/break/lines/automatically/like/this.
+            </span>
+          </div>
+          
+        </li>
+        <li class="sent-message message">
+          <span class="message__timestamp"></span>
+          <div class="message__content">
+            <span class="message__bubble">
+              Oh! I need to ask Nico how to solve this.
+            </span>
           </div>
         </li>
       </ul>
@@ -83,7 +105,7 @@
           <i class="fas fa-smile-wink"></i>
         </span>
         <span class="chat__write-icon">
-          <i class="fas fa-smile"></i>
+          <i class="fas fa-microphone"></i>
         </span>
       </div>
     </div>
